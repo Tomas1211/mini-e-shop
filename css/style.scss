@@ -1,0 +1,45 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    color: gold;
+    text-shadow: 0 0 5px black;
+    background: #2A7B9B;
+    background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(106, 87, 199, 1) 7%, rgba(237, 221, 83, 1) 100%);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+#products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.product {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 8px;
+
+    &__image {
+        border-radius: 8px 8px 0 0;
+    }
+    
+    &__data {
+        padding: 16px;
+    }
+
+
+}
