@@ -37,7 +37,7 @@ const fetchProducts = async () => {
 
             addToCartBtn.addEventListener("click", () => {
                 state.cart.push(product)
-                cartCount.textContent = `Cart: ${state.cart.length}`
+                updateCartCount()
             })
             
 
@@ -49,3 +49,8 @@ const fetchProducts = async () => {
 }
 
 fetchProducts()
+
+
+const updateCartCount = () => {
+    cartCount.textContent = `Cart: ${state.cart.length}`
+}
