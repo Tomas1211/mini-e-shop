@@ -1,4 +1,5 @@
 const products = document.getElementById("products")
+const cartCount = document.getElementById("cartCount")
 
 const state = {
     cart: []
@@ -29,6 +30,15 @@ const fetchProducts = async () => {
                 <button class="addToCartBtn">Add to Cart</button>
             </div>
             `
+            
+
+            const addToCartBtn = div.querySelector(".addToCartBtn")
+
+
+            addToCartBtn.addEventListener("click", () => {
+                state.cart.push(product)
+                cartCount.textContent = `Cart: ${state.cart.length}`
+            })
             
 
             products.appendChild(div)
