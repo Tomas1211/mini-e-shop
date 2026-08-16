@@ -1,5 +1,6 @@
 const products = document.getElementById("products")
 const cartCount = document.getElementById("cartCount")
+const cart = document.getElementById("cart")
 
 const state = {
     cart: []
@@ -27,7 +28,20 @@ const fetchProducts = async () => {
                 <h3 class="product__name">${product.name}</h3>
                 <p class="product__price">${product.price} $</p>
                 <p class="product__category">${product.category}</p>
-                <button class="addToCartBtn">Add to Cart</button>
+
+                <!-- From Uiverse.io by adamgiebl --> 
+                <button class="addToCartBtn cssbuttons-io-button">
+                    <svg
+                        height="24"
+                        width="24"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"></path>
+                    </svg>
+                    <span>Add to Cart</span>
+                </button>
             </div>
             `
             
@@ -52,8 +66,7 @@ const fetchProducts = async () => {
                     existingProduct.quantity++
                 }
 
-                console.log(state.cart)
-                
+                renderCart()
                 updateCartCount()
             })
             
@@ -71,4 +84,37 @@ fetchProducts()
 const updateCartCount = () => {
     const count = state.cart.reduce((sum, item) => sum + item.quantity, 0)
     cartCount.textContent = `Cart: ${count}`
+}
+
+
+const removeItem = (id) => {
+    state.cart = state.cart.filter(item => item.id !== id)
+
+    renderCart()
+    updateCartCount()
+}
+
+
+const renderCart = () => {
+    cart.innerHTML = ""
+    
+    state.cart.forEach(item => {
+        const div = document.createElement("div")
+        div.classList.add("item")
+
+        div.innerHTML = `
+            <h3 class="item__name">${item.name}</h3>
+            <p class="item__price">
+                <span>${item.price} $</span>
+            </p>
+            <p class="item__quantity">Quantity: ${item.quantity}</p>
+            <button class="removeBtn">Remove</button>
+        `
+
+        const removeBtn = div.querySelector(".removeBtn")
+
+        removeBtn.addEventListener("click", () => removeItem(item.id))
+
+        cart.appendChild(div)
+    })
 }
