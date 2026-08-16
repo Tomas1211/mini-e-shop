@@ -36,7 +36,24 @@ const fetchProducts = async () => {
 
 
             addToCartBtn.addEventListener("click", () => {
-                state.cart.push(product)
+
+                
+                const existingProduct = state.cart.find(item => item.id === product.id)
+
+
+                if (!existingProduct) {
+                    state.cart.push(
+                        {
+                            ...product,
+                            quantity: 1
+                        }
+                    )
+                } else {
+                    existingProduct.quantity++
+                }
+
+                console.log(state.cart)
+                
                 updateCartCount()
             })
             
