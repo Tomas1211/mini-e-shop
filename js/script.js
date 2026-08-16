@@ -69,5 +69,6 @@ fetchProducts()
 
 
 const updateCartCount = () => {
-    cartCount.textContent = `Cart: ${state.cart.length}`
+    const count = state.cart.reduce((sum, item) => sum + item.quantity, 0)
+    cartCount.textContent = `Cart: ${count}`
 }
