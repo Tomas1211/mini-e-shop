@@ -81,6 +81,7 @@ const fetchProducts = async () => {
 fetchProducts()
 
 
+
 const updateCartCount = () => {
     const count = state.cart.reduce((sum, item) => sum + item.quantity, 0)
     cartCount.textContent = `Cart: ${count}`
@@ -108,12 +109,38 @@ const renderCart = () => {
                 <span>${item.price} $</span>
             </p>
             <p class="item__quantity">Quantity: ${item.quantity}</p>
-            <button class="removeBtn">Remove</button>
+            <div class="item__quantity-edit">
+                <button class="minusBtn">[ - ]</button>
+                <p class="quantity">${item.quantity}</p>
+                <button class="plusBtn">[ + ]</button>
+            </div>
         `
 
-        const removeBtn = div.querySelector(".removeBtn")
 
-        removeBtn.addEventListener("click", () => removeItem(item.id))
+        const minusBtn = div.querySelector(".minusBtn")
+        const plusBtn = div.querySelector(".plusBtn")
+
+
+        // const quantity = div.querySelector(".quantity")
+
+        minusBtn.addEventListener("click", () => {
+            if (item.quantity <= 1) {
+                removeItem(item.id)
+                return
+            }
+            
+            item.quantity--
+            renderCart()
+        })
+
+        plusBtn.addEventListener("click", () => {
+            item.quantity++
+            renderCart()
+        })
+        
+        
+        const quantityEdit = div.querySelector(".item__quantity-edit")
+
 
         cart.appendChild(div)
     })
