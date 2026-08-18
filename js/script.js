@@ -81,6 +81,30 @@ const fetchProducts = async () => {
 fetchProducts()
 
 
+const updateQuantity = (id, amount) => {
+    const updatedProduct = state.cart.find(product => product.id === id)
+
+    switch (amount) {
+        case 1:
+            updatedProduct.quantity++
+
+            break
+        case -1:
+            if (updatedProduct.quantity <= 1) {
+                removeItem(updatedProduct.id)
+                return
+            }
+
+            updatedProduct.quantity--
+
+            
+            break
+        }
+        
+    renderCart()
+    updateCartCount()
+}
+
 
 const updateCartCount = () => {
     const count = state.cart.reduce((sum, item) => sum + item.quantity, 0)
@@ -123,20 +147,9 @@ const renderCart = () => {
 
         // const quantity = div.querySelector(".quantity")
 
-        minusBtn.addEventListener("click", () => {
-            if (item.quantity <= 1) {
-                removeItem(item.id)
-                return
-            }
-            
-            item.quantity--
-            renderCart()
-        })
+        minusBtn.addEventListener("click", () => updateQuantity(item.id, -1))
 
-        plusBtn.addEventListener("click", () => {
-            item.quantity++
-            renderCart()
-        })
+        plusBtn.addEventListener("click", () => updateQuantity(item.id, 1))
         
         
         const quantityEdit = div.querySelector(".item__quantity-edit")
