@@ -22,15 +22,26 @@ img {
 }
 
 #cart {
-  border: 1px solid #000;
   margin-bottom: 40px;
 }
 #cart .item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 20px;
   margin-bottom: 20px;
 }
-#cart .item :not(:last-child) {
-  border-bottom: 1px solid #000;
+#cart .item__recap {
+  width: 50%;
+}
+#cart .item__recap > * {
+  padding: 6px 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) -3px 3px 14px;
+  border-radius: 4px;
+}
+#cart .item__quantity-edit {
+  display: flex;
+  gap: 8px;
 }
 #cart .item:not(:last-child) {
   border-bottom: 1px solid #000;
@@ -57,6 +68,14 @@ img {
   flex-direction: column;
   flex: 1;
   padding: 16px;
+}
+
+.box-shadow {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.border-radius8px {
+  border-radius: 8px;
 }
 
 .addToCartBtn {

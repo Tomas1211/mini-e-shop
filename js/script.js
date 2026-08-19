@@ -123,16 +123,25 @@ const removeItem = (id) => {
 const renderCart = () => {
     cart.innerHTML = ""
     
+    if (state.cart.length !== 0) {
+        cart.classList.add("box-shadow", "border-radius8px")
+    } else {
+        cart.classList.remove("box-shadow", "border-radius8px")
+    }
+
+    
     state.cart.forEach(item => {
         const div = document.createElement("div")
         div.classList.add("item")
 
         div.innerHTML = `
-            <h3 class="item__name">${item.name}</h3>
-            <p class="item__price">
-                <span>${item.price} $</span>
-            </p>
-            <p class="item__quantity">Quantity: ${item.quantity}</p>
+            <div class="item__recap">
+                <h3 class="item__name">${item.name}</h3>
+                <p class="item__price">
+                    <span>${item.price} $</span>
+                </p>
+                <p class="item__quantity">Quantity: ${item.quantity}</p>
+            </div>
             <div class="item__quantity-edit">
                 <button class="minusBtn">[ - ]</button>
                 <p class="quantity">${item.quantity}</p>

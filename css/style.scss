@@ -23,15 +23,30 @@ img {
 
 
 #cart {
-    border: 1px solid #000;
+    // border: 1px solid #000;
     margin-bottom: 40px;
 
     .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         padding: 20px;
         margin-bottom: 20px;
 
-        :not(:last-child) {
-            border-bottom: 1px solid #000;
+
+        &__recap {
+            width: 50%;
+
+            & > * {
+                padding: 6px 10px;
+                box-shadow: rgba(0, 0, 0, 0.24) -3px 3px 14px;
+                border-radius: 4px;
+            }
+        }
+
+        &__quantity-edit {
+            display: flex;
+            gap: 8px;
         }
     }
 
@@ -40,6 +55,10 @@ img {
     }
     
 }
+
+// #cart:empty {
+//     border: none;
+// }
 
 
 #products {
@@ -70,6 +89,17 @@ img {
     
     
 }
+
+
+// Utility classes
+.box-shadow {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.border-radius8px {
+    border-radius: 8px;
+}
+
 
 // Add to Cart button custom styles
 .addToCartBtn {
